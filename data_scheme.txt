@@ -1,0 +1,31 @@
+
+
+Users Table -- one to many --> VoiceModels Table -- one to many --> APIRequests Table
+
+
+Users Table (Stores basic information about each user.)
+
+UserID (Primary Key): Unique identifier for each user.
+Username: User's chosen username.
+Email: User's email address.
+PasswordHash: Hashed password for user authentication.
+Role: The role of the user (e.g., admin, standard user).
+
+
+VoiceModels Table (Associates each voice model with a user and stores related metadata.)
+
+ModelID (Primary Key): Unique identifier for each voice model created in Azure.
+UserID (Foreign Key): Links to the Users table to associate the model with a user.
+CreatedAt: Timestamp when the model was created.
+Status: Current status of the model (e.g., training, ready).
+
+
+APIRequests Table (Logs each request made to the Azure Speaker Recognition API and its results.)
+
+RequestID (Primary Key): Unique identifier for each API request.
+UserID (Foreign Key): Links to the Users table to indicate which user made the request.
+ModelID (Foreign Key): Links to the VoiceModels table to associate the request with a specific voice model.
+RequestType: The type of request (e.g., identification, verification).
+RequestTime: Timestamp when the request was made.
+Response: Summary of the API response (e.g., identified speaker, success/failure status).
+ConfidenceScore: Confidence score of the identification or verification (if applicable).
